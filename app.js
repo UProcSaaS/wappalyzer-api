@@ -12,10 +12,13 @@ if (process.env.DISABLE_REQUESTS_LOGGING == undefined) {
 
 app.get('/', (req, res) => {
   res.send('Wappalyzer API is ready! 🚀')
-})
+});
 
-app.get('/extract', (req, res) => {
-  var url = req.query.url;
+var detectByWappalyzer = function(url, opts, callback) {
+  var payload = {
+    error: "",
+    results: {}
+  };
 
   if (url && url.length) {
     const options = {
@@ -25,10 +28,10 @@ app.get('/extract', (req, res) => {
       maxDepth: 3,
       maxUrls: 10,
       maxWait: 5000,
-      recursive: false,
+      recursive: opts.recursive,
       probe: true,
       proxy: false,
-      userAgent: 'Wappalyzer',
+      userAgent: 'Mozilla/5.0 (Linux; Android 12; SM-S906N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.119 Mobile Safari/537.36',
       htmlMaxCols: 2000,
       htmlMaxRows: 2000,
       noScripts: false,
@@ -36,10 +39,6 @@ app.get('/extract', (req, res) => {
     };
 
     const wappalyzer = new Wappalyzer(options);
-    var payload = {
-      error: "",
-      results: {}
-    };
 
     (async function() {
       try {
@@ -61,13 +60,26 @@ app.get('/extract', (req, res) => {
       }
       await wappalyzer.destroy()
 
-      res.json(payload);
+      return callback(null, payload);
     })()
   } else {
-    res.json({
-      error: "url empty"
-    });
+    payload.error = "URL not found"
+    return callback(null, payload)
   }
+}
+
+app.get('/detectRecursive', (req, res) => {
+  var url = req.query.url;
+  detectByWappalyzer(url, {recursive: true}, function(err, payload) {
+    res.json(payload);
+  });
+});
+
+app.get('/detect', (req, res) => {
+  var url = req.query.url;
+  detectByWappalyzer(url, {recursive: false}, function(err, payload) {
+    res.json(payload);
+  });
 })
 
 app.listen(PORT, () => console.log(`Starting Wappalyzer on http://0.0.0.0:${PORT}`))
