@@ -1,14 +1,21 @@
 # wappalyzer-api
 
-Simple wrap of [Wappalyzer](https://github.com/AliasIO/Wappalyzer) to use instead of wappalyzer API.
+Simple wrap of [Wappalyzer](https://github.com/AliasIO/Wappalyzer) to use instead of Wappalyzer API.
 
 > WARNING!!! Use [Wappalyzer](https://github.com/AliasIO/Wappalyzer) API in production, this image is only for development purposes.
 
-API loosely mimics Wappalyzer API with a single endpoint `extract`
+API loosely mimics Wappalyzer API with a two endpoints: `detect` and `detectRecursive`
+
+Image is built using Wappalyzer 6.10.38
+
+## Motivation
+I am [Miquel Colomer](https://miquelcolomer.com), owner of [Killia](https://killia.com), creator of [uProc](https://uproc.io) and [Aprende n8n](https://aprenden8n.com).
+
+I decided to create this image because I found no alternatives to launch the latest version of Wappalyzer in Docker or GitHub.
 
 ## Lookup API
 
-Look up an URL in a direct or recursive way with Wappalyzer (6.10.38).
+Look up an URL in a direct or recursive way with Wappalyzer.
 
 ### Resource URI
 
