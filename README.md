@@ -8,7 +8,7 @@ API loosely mimics Wappalyzer API with a single endpoint `extract`
 
 ## Lookup API
 
-Look up a domain with Wappalyzer.
+Look up an URL in a direct or recursive way with Wappalyzer (6.10.38).
 
 ### Resource URI
 
