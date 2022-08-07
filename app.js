@@ -36,7 +36,10 @@ app.get('/extract', (req, res) => {
     };
 
     const wappalyzer = new Wappalyzer(options);
-    var results = {};
+    var payload = {
+      error: "",
+      results: {}
+    };
 
     (async function() {
       try {
@@ -50,19 +53,15 @@ app.get('/extract', (req, res) => {
         // Optionally capture and output errors
         site.on('error', console.error)
 
-        results = await site.analyze()
-        console.log(JSON.stringify(results, null, 2))
+        payload.results = await site.analyze()
+        console.log(JSON.stringify(payload.results, null, 2))
       } catch (error) {
         console.error(error)
+        payload.error = error;
       }
-
       await wappalyzer.destroy()
 
-      res.json({
-        url: url,
-        results: results
-      });
-
+      res.json(payload);
     })()
   } else {
     res.json({
