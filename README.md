@@ -258,6 +258,8 @@ GET http://localhost:3000/detect?url=https://uproc.io
 
 ```
 
+### Resource URI
+
 ```
 detectRecursive
 ```
