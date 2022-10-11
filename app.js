@@ -1,5 +1,5 @@
 const express = require('express')
-const Wappalyzer = require('wappalyzer');
+const Wappalyzer = require('uproc-wappalyzer');
 const morgan = require('morgan')
 
 const PORT = process.env.PORT || 3000
