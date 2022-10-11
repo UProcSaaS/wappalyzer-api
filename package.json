@@ -6,7 +6,7 @@
   "dependencies": {
     "express": "^4.18.1",
     "morgan": "^1.10.0",
-    "uproc-wappalyzer": "^6.10.42"
+    "uproc-wappalyzer": "^1.0.0"
   },
   "engines": {
     "npm": ">=7.0.0",
