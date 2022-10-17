@@ -1,12 +1,12 @@
 {
   "name": "wappalyzer-api",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.18.1",
+    "express": "^4.18.2",
     "morgan": "^1.10.0",
-    "uproc-wappalyzer": "^1.0.0"
+    "uproc-wappalyzer": "^1.0.2"
   },
   "engines": {
     "npm": ">=7.0.0",

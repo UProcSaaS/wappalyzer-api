@@ -27,7 +27,7 @@ var detectByWappalyzer = function(url, opts, callback) {
       headers: {},
       maxDepth: 3,
       maxUrls: 10,
-      maxWait: 10000,
+      maxWait: 30000,
       recursive: opts.recursive,
       probe: true,
       proxy: false,
